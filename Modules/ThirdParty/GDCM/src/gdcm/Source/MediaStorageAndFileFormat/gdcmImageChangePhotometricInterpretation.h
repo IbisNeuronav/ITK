@@ -14,6 +14,7 @@
 #ifndef GDCMIMAGECHANGEPHOTOMETRICINTERPRETATION_H
 #define GDCMIMAGECHANGEPHOTOMETRICINTERPRETATION_H
 
+#include <limits>
 #include "gdcmImageToImageFilter.h"
 #include "gdcmPhotometricInterpretation.h"
 
