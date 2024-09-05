@@ -17,6 +17,7 @@
  *=========================================================================*/
 
 #include "itkMathematicalMorphologyEnums.h"
+#include <cstdint>
 
 namespace itk
 {
