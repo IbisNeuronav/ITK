@@ -195,7 +195,7 @@ private:
   CalculatePowerOfTwo(const std::size_t n) ITK_NOEXCEPT
   {
     return (n < std::numeric_limits<uintmax_t>::digits) ? (uintmax_t{ 1 } << n)
-                                                             : (ITK_X_ASSERT(!"CalculatePowerOfTwo overflow!"), 0);
+							: (ITK_X_ASSERT(!"CalculatePowerOfTwo overflow!"), 0);
   }
 
 
