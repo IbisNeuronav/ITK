@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include "ITKMathematicalMorphologyExport.h"
+#include "itkIntTypes.h" // For uint8_t
 
 
 namespace itk

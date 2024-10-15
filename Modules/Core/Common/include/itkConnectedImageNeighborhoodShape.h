@@ -21,10 +21,10 @@
 
 #include "itkMath.h"
 #include "itkOffset.h"
+#include "itkIntTypes.h" // For uintmax_t
 
 #include <array>
 #include <cassert>
-#include <cstdint> // For uintmax_t
 #include <limits>
 
 // C++11 does not guarantee that assert can be used in constexpr
@@ -182,8 +182,8 @@ private:
 
   // Calculates a + b. Numeric overflow triggers a compilation error in
   // "constexpr context" and a debug assert failure at run-time.
-  static constexpr std::uintmax_t
-  CalculateSum(const std::uintmax_t a, const std::uintmax_t b) ITK_NOEXCEPT
+  static constexpr uintmax_t
+  CalculateSum(const uintmax_t a, const uintmax_t b) ITK_NOEXCEPT
   {
     return ((a + b) >= a) && ((a + b) >= b) ? (a + b) : (ITK_X_ASSERT(!"CalculateSum overflow!"), 0);
   }
@@ -191,10 +191,10 @@ private:
 
   // Calculates 2 ^ n. Numeric overflow triggers a compilation error in
   // "constexpr context" and a debug assert failure at run-time.
-  static constexpr std::uintmax_t
+  static constexpr uintmax_t
   CalculatePowerOfTwo(const std::size_t n) ITK_NOEXCEPT
   {
-    return (n < std::numeric_limits<std::uintmax_t>::digits) ? (std::uintmax_t{ 1 } << n)
+    return (n < std::numeric_limits<uintmax_t>::digits) ? (uintmax_t{ 1 } << n)
                                                              : (ITK_X_ASSERT(!"CalculatePowerOfTwo overflow!"), 0);
   }
 
@@ -203,8 +203,8 @@ private:
   // Inspired by the 'binom' function from Walter, June 23, 2017:
   // https://stackoverflow.com/questions/44718971/calculate-binomial-coffeficient-very-reliable/44719165#44719165
   // Optimized for small values of 'k' (k <= n/2).
-  static constexpr std::uintmax_t
-  CalculateBinomialCoefficient(const std::uintmax_t n, const std::uintmax_t k) ITK_NOEXCEPT
+  static constexpr uintmax_t
+  CalculateBinomialCoefficient(const uintmax_t n, const uintmax_t k) ITK_NOEXCEPT
   {
     return (k > n) ? (ITK_X_ASSERT(!"Out of range!"), 0)
                    : (k == 0) ? 1 : Math::UnsignedProduct(n, CalculateBinomialCoefficient(n - 1, k - 1)) / k;
